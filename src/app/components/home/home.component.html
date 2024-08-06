@@ -1,0 +1,95 @@
+<!-- <h3>String Interpolation</h3>
+<p>home component</p>
+<p>My name is {{name}}</p>
+<p>{{emp.name}}</p>
+<p>{{employee | json}}</p>
+<p>{{employee[0].name}}</p>
+<hr><br>
+
+
+<p>Property Binding</p>
+<input type="text" [value]="name" [id]="name">
+<hr><br>
+
+<h3>Class Binding</h3>
+<p class="textColor">Regular class</p>
+<p [class]="myText">Class Binding</p>
+<p class="textColor textSize">Regular Multiple Classes </p>
+<p [class]="myGroup">class binding with group</p>
+<p [class]="isRequired ? 'textSize': ''">class binding with ternary operator</p>
+<p [class.textSize]="isRequired">class binding with .operator</p>
+<hr><br>
+
+<h3>Style Binding</h3>
+<p [style.color]="myColor">Hello</p>
+<p [style.color]="'blue'">Hello</p>
+<p [style.fontSize]="isRequired ? '40px' : '10px'">Hello</p>
+<p [ngStyle]="myGroupStyle">Hello</p>
+<hr><br>
+
+<h3>Event binding</h3>
+<button class="btn btn-primary" (click)="onClick()">Click here</button>
+<button class="btn btn-success" (dblclick)="onDblClick()">Double Click</button>
+<button class="btn btn-danger" (mouseover)="onOver()">Mouse Over</button>
+<button class="btn btn-warning" (mouseout)="onOut()">Mouse Out</button>
+<button class="btn btn-secondary" (mousemove)="onMove()">Mouse Move</button>
+<hr>
+<input type="text" (keydown)="kDown()">
+<input type="text" (keyup)="kUp()">
+<input type="text" (keypress)="kPress()">
+<input type="text" (focusin)="onFocus()">
+<input type="text" (blur)="onFocusLost()">
+<input type="text" (input)="onInput()">
+<hr><br>
+
+<h3>Two way data binding</h3>
+<input type="text" placeholder="Enter Name" #name>
+<input type="text" placeholder="Enter Course" #course>
+<input type="text" placeholder="Enter Fee" #fee>
+
+<button (click)="onClick1(name.value)">Name</button>
+<button (click)="onClick2(course.value)">Course</button>
+<button (click)="onClick3(fee.value)">Fee</button>
+ -->
+
+
+<!-- <div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3" *ngFor="let x of technologies" (click)="onTechnology(x.technologyName)">
+        <div class="card" style="width: 18rem; height: 18rem;">
+          <img src={{x.imgSrc}} class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{x.technologyName}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<app-navbar></app-navbar>
+
+<div>
+  <div class="container" *ngIf="!show">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let x of technologie" (click)="showTable(x)">
+        <div class="card" style="width: 18rem; height: 18rem;">
+          <img src={{x.imgSrc}} class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{x.technologyName}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="show">
+    <!-- <app-add-employee-modal [category]="category"></app-add-employee-modal> -->
+    <app-employee-table [shows]="show" (back)="onBack()" [postTechnology]="technologie"
+      [techs]="tech"></app-employee-table>
+  </div>
+</div>
+
+
+
+<!-- <app-employee-table *ngIf="show" [postMan]="" [shows]="show"></app-employee-table> -->
+<!-- <app-employee-table *ngIf="show" (back)="onBack()" ></app-employee-table> -->

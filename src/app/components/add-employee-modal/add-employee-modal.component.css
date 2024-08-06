@@ -1,0 +1,40 @@
+.addEmp {
+    margin: 0px 74px;
+}
+
+.emp {
+    padding: 7px;
+    color: white;
+    background-color: rgb(27, 144, 144);
+    border: none;
+    border-radius: 10px;
+}
+
+.submitEmp {
+    text-align: center;
+}
+
+.btn-submit {
+    background-color: rgb(27, 144, 144);
+    border: none;
+    border-radius: 10px;
+    padding: 7px 10px;
+    color: white;
+
+}
+
+input select .ng-invalid .ng-touched {
+    border: 2px solid red;
+}
+
+small {
+    color: red;
+    font-weight: bold;
+}
+.btn-disable {
+    cursor: not-allowed;
+}
+
+.btn-enable {
+    cursor: pointer;
+}

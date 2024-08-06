@@ -1,0 +1,157 @@
+<!-- <div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="form">
+                    <h1 class="signUp">Sign Up</h1>
+                    <div>
+                        <form (ngSubmit)="onSubmitSignUP()" #signUP='ngForm'>
+                            <div class="username">
+                                <label>UserName :</label>
+                                <input type="text" name="userName" required minlength="4" pattern="^[a-zA-Z]+$" ngModel #user="ngModel"  >
+                            </div>
+                            <div *ngIf='user.invalid && user.touched'>
+                                <small *ngIf="user.errors['required']">UserName is a required field</small>
+                                <small *ngIf="user.errors['minlength']">UserName should contain at least {{ user.errors['minlength'].requiredLength }} characters</small>
+                                <small *ngIf="user.errors['pattern']">UserName should contain only alphabetic characters</small>
+                            </div>
+                            <br>
+                            <div class="mobileNumber">
+                                <label>Mobile Number :</label>
+                                <input type="tel" name="mobileNumber" required  pattern="[0-9]{10}"  ngModel #mnum="ngModel" >
+                            </div>
+                            <div *ngIf='mnum.invalid && mnum.touched'>
+                                <small *ngIf="mnum.errors['required']">Mobile Number is a required field</small> 
+                                <small *ngIf="mnum.errors['pattern']">Mobile Number must contain 10 digits only</small>
+                            </div>
+                            <br>
+                            <div class="password">
+                                <label>Password :</label>
+                                <input type="password" name="password" ngModel #pword="ngModel" required pattern="^[a-zA-z0-9]+$" minlength="5"  maxlength="8" [(ngModel)]="password" (ngModelChange)="validatePasswords()" >
+                            </div>
+                            <div  *ngIf='pword.invalid && pword.touched'>
+                                <small *ngIf="pword.errors['required']">Password is a required field</small>
+                                <small *ngIf="pword.errors['minlength']">Password should contain at least {{ pword.errors['minlength'].requiredLength }} characters</small>
+                                <small *ngIf="pword.errors['maxlength']">Password should contain at least {{ pword.errors['maxlength'].requiredLength }} characters</small><br>
+                                <small *ngIf="pword.errors['pattern']">Password must match with pattern</small>
+                            </div>
+                            <br>
+                            <div class="password">
+                                <label>Confirm Password :</label>
+                                <input type="password" name="confirmPassword" ngModel #cpword="ngModel" required [(ngModel)]="confirmPassword" (ngModelChange)="validatePasswords()">
+                            </div>
+                            <div *ngIf='cpword.invalid && cpword.touched'>
+                                <small *ngIf="cpword.errors['required']">Confirm Password is a required field</small><br>
+                                <small *ngIf="!passwordsMatch()">Passwords do not match</small>
+                            </div>
+                            <br>
+                            <button class="login" type="submit" [disabled]='!signUP.valid'>Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="form">
+                    <h1 class="signUp">Sign Up</h1>
+                    <div>
+                        <form (ngSubmit)="onSubmitSignUP()" [formGroup]="signUpForm">
+                            <div class="username">
+                                <!-- <label>UserName :</label> -->
+                                <input type="text" name="userName" formControlName="username" class="form-control"
+                                    id="exampleFormControlInput1" placeholder="User Name">
+                            </div>
+                            <div *ngIf="signUpForm.get('username').invalid && signUpForm.get('username').touched ">
+                                <small *ngIf="signUpForm.get('username').errors?.['required']">UserName is a required
+                                    field</small>
+                                <small *ngIf="signUpForm.get('username').errors?.['maxlength']">UserName should not
+                                    contain more than 10 characters</small>
+                                <small *ngIf="signUpForm.get('username').errors?.['minlength']">UserName should contain
+                                    at least 4 characters</small>
+                                <small *ngIf="signUpForm.get('username').errors?.['pattern']">UserName should contain
+                                    only alphabetic characters</small>
+                            </div>
+                            <br>
+                            <div class="email">
+                                <!-- <label>Email :</label> -->
+                                <input type="email" name="email" formControlName="email" class="form-control"
+                                    id="exampleFormControlInput1" placeholder="Email">
+                            </div>
+                            <div *ngIf="signUpForm.get('email').invalid && signUpForm.get('email').touched ">
+                                <small *ngIf="signUpForm.get('email').errors?.['required']">Email is a required
+                                    field</small>
+                                <small *ngIf="signUpForm.get('email').errors?.['email']">Enter valid email</small>
+                                <small *ngIf="signUpForm.get('email')?.errors?.['duplicateEmail']">Email already
+                                    exists.</small>
+                            </div>
+                            <br>
+                            <div class="mobileNumber">
+                                <!-- <label>Mobile Number :</label> -->
+                                <input type="number" name="mobileNumber" formControlName="mobilenumber"
+                                    class="form-control" id="exampleFormControlInput1" placeholder="Mobile Number">
+                            </div>
+                            <div
+                                *ngIf="signUpForm.get('mobilenumber').invalid && signUpForm.get('mobilenumber').touched ">
+                                <small *ngIf="signUpForm.get('mobilenumber').errors?.['required']">Mobile Number is a
+                                    required field</small>
+                                <small *ngIf="signUpForm.get('mobilenumber').errors?.['pattern']">Mobile Number should
+                                    contain only numbers with 10 digits</small>
+                                <small *ngIf="signUpForm.get('mobilenumber')?.errors?.['duplicateMobile']">Mobile number
+                                    already exists.</small>
+                            </div>
+                            <br>
+                            <div class="password">
+                                <!-- <label>Password :</label> -->
+                                <input type="password" name="password" formControlName="password" class="form-control"
+                                    id="exampleFormControlInput1" placeholder="Password">
+                            </div>
+                            <div *ngIf="signUpForm.get('password').invalid && signUpForm.get('password').touched ">
+                                <small *ngIf="signUpForm.get('password').errors?.['required']">Password is a required
+                                    field</small>
+                                <small *ngIf="signUpForm.get('password').errors?.['minlength']">Password should contain
+                                    at least {{ signUpForm.get('password').errors?.['minlength'].requiredLength }}
+                                    characters</small>
+                                <small *ngIf="signUpForm.get('password').errors?.['maxlength']">Password should contain
+                                    at least {{ signUpForm.get('password').errors?.['maxlength'].requiredLength }}
+                                    characters</small><br>
+                                <small *ngIf="signUpForm.get('password').errors?.['pattern']">Password must contain
+                                    atleast one UpperCase letter and special character</small>
+                            </div>
+                            <br>
+                            <div class="password">
+                                <input type="password" name="confirmPassword" formControlName="confirmPassword"
+                                    class="form-control" id="exampleFormControlInput1" placeholder="Confirm Password">
+                            </div>
+                            <div
+                                *ngIf="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched ">
+                                <small *ngIf="signUpForm.get('confirmPassword').errors?.['required']">Confirm Password
+                                    is a required field</small>
+                                <small *ngIf="signUpForm.errors?.['passwordMismatch']">Does not match with
+                                    password</small>
+                                <!-- <small *ngIf="signUpForm.get('password') !== signUpForm.get('confirmPassword')">Does not match with password</small> -->
+                            </div>
+
+                            <br>
+                            <button class="login" [ngClass]="signUpForm.valid ? 'btn-enable' : 'btn-disable'"
+                                type="submit" [disabled]='!signUpForm.valid'>Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</div>

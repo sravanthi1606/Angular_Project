@@ -1,0 +1,36 @@
+<!-- <div>
+    <div class="container-fluid">
+      <div class="header">
+        <a href="home"><img class="logo" src={{imgUrl}}></a> -->
+<!-- <a href="profile" style="font-size: 40px;"><i class="bi bi-person-circle"></i></a> -->
+<!-- <a href="" style="font-size: 40px; cursor: default;" ><i class="bi bi-person-circle loginicon"></i></a> -->
+<!-- <div class="row">
+            <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+                        <i class="bi bi-person-circle loginicon"></i>
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                         <p style="text-align: center;">{{currentUser[0].username}}</p>
+                        <button style="text-align: center;" ngbDropdownItem (click)="handleLogoutfun()">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+<div class="dropdown">
+    <div class="header">
+        <a href="home"><img class="logo" src={{imgUrl}}></a>
+        <button class="dropdown-button" (click)="toggleDropdown()">
+            <i class="bi bi-person-circle loginicon"></i>
+        </button>
+    </div>
+    <div class="dropdown-menu" [ngClass]="{'show': isOpen}">
+        <p class="username">{{ currentUser[0].username.toUpperCase() }}</p>
+        <button class="dropdown-item" (click)="handleLogout()">Logout</button>
+    </div>
+</div>
