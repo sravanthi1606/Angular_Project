@@ -29,7 +29,8 @@ export const routes: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'employeeTable/:technology',
+        // path: 'employeeTable/:technology',
+        path:'home/:technologyName',
         component: EmployeeTableComponent
     },
     {

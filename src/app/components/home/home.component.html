@@ -83,11 +83,14 @@
     </div>
   </div>
   <div *ngIf="show">
-    <!-- <app-add-employee-modal [category]="category"></app-add-employee-modal> -->
-    <app-employee-table [shows]="show" (back)="onBack()" [postTechnology]="technologie"
-      [techs]="tech"></app-employee-table>
+    <app-employee-table [shows]="show" (back)="onBack()" [techs]="tech" [technologyName]="category"></app-employee-table>
   </div>
 </div>
+
+<!-- <app-employee-table [shows]="show" (back)="onBack()" [postTechnology]="technologie" 
+      [techs]="tech"></app-employee-table> -->
+    <!-- <app-add-employee-modal [category]="category"></app-add-employee-modal> -->
+
 
 
 

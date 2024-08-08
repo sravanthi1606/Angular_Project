@@ -21,7 +21,7 @@ interface EmployeeData {
 @Component({
   selector: 'app-add-employee-modal',
   standalone: true,
-  imports: [FormsModule, NgbDatepickerModule,ReactiveFormsModule,CommonModule],
+  imports: [FormsModule, NgbDatepickerModule, ReactiveFormsModule, CommonModule],
   templateUrl: './add-employee-modal.component.html',
   styleUrl: './add-employee-modal.component.css',
   providers: [NgbModalConfig, NgbModal],
@@ -32,7 +32,10 @@ export class AddEmployeeModalComponent {
 
   constructor(public activeModal: NgbActiveModal, private empDetails: CourseService) { }
   @Output() employeeAdded = new EventEmitter<any>();
-  @Input() employee : any;
+  @Input() employee: any;
+
+  @Input() technologies: []
+  @Input() technologName: string
 
 
   addEditForm: FormGroup
@@ -40,43 +43,43 @@ export class AddEmployeeModalComponent {
   OnAddEditSubmit() {
     console.log('submit', this.addEditForm.value);
 
-      if(this.employee){
-        const editedEmp={
-          id: this.employee.id,
-          employee: this.addEditForm.value.employee,
-          mobileNumber: Number(this.addEditForm.value.mobileNumber),
-          company: this.addEditForm.value.company,
-          projectName: this.addEditForm.value.projectName,
-          projectDescription: this.addEditForm.value.projectDescription,
-          technology: this.addEditForm.value.technology,
-          experience: Number(this.addEditForm.value.experience),
-          noticePeriod: Number(this.addEditForm.value.noticePeriod),
-          verified: this.addEditForm.value.verified,
-        }
-        const updateEmp = {...this.employee,...editedEmp}
-        this.empDetails.EditUpdateEmployee(updateEmp)
-        console.log(updateEmp,'updateEmp');  
-        console.log(this.employee,'hjfdsf')
+    if (this.employee) {
+      const editedEmp = {
+        id: this.employee.id,
+        employee: this.addEditForm.value.employee,
+        mobileNumber: Number(this.addEditForm.value.mobileNumber),
+        company: this.addEditForm.value.company,
+        projectName: this.addEditForm.value.projectName,
+        projectDescription: this.addEditForm.value.projectDescription,
+        technology: this.addEditForm.value.technology,
+        experience: Number(this.addEditForm.value.experience),
+        noticePeriod: Number(this.addEditForm.value.noticePeriod),
+        verified: this.addEditForm.value.verified,
       }
-      else{
-        const newEmployee: any = {
-          id: this.empDetails.getSingleEmpData().data.length + 1,
-          employee: this.addEditForm.value.employee,
-          mobileNumber: Number(this.addEditForm.value.mobileNumber),
-          company: this.addEditForm.value.company,
-          projectName: this.addEditForm.value.projectName,
-          projectDescription: this.addEditForm.value.projectDescription,
-          technology: [this.addEditForm.value.technology],
-          experience: Number(this.addEditForm.value.experience),
-          noticePeriod: Number(this.addEditForm.value.noticePeriod),
-          verified: this.addEditForm.value.verified,
-        }
-        console.log('submit', this.addEditForm.value);
+      const updateEmp = { ...this.employee, ...editedEmp }
+      this.empDetails.EditUpdateEmployee(updateEmp)
+      console.log(updateEmp, 'updateEmp');
+      console.log(this.employee, 'hjfdsf')
+    }
+    else {
+      const newEmployee: any = {
+        id: this.empDetails.getSingleEmpData().data.length + 1,
+        employee: this.addEditForm.value.employee,
+        mobileNumber: Number(this.addEditForm.value.mobileNumber),
+        company: this.addEditForm.value.company,
+        projectName: this.addEditForm.value.projectName,
+        projectDescription: this.addEditForm.value.projectDescription,
+        technology: [this.addEditForm.value.technology],
+        experience: Number(this.addEditForm.value.experience),
+        noticePeriod: Number(this.addEditForm.value.noticePeriod),
+        verified: this.addEditForm.value.verified,
+      }
+      console.log('submit', this.addEditForm.value);
 
-        console.log(newEmployee, 'newEmployee');
-        this.empDetails.addEmployee(newEmployee)
-        
-      }
+      console.log(newEmployee, 'newEmployee');
+      this.empDetails.addEmployee(newEmployee)
+
+    }
     this.employeeAdded.emit(true);
     this.addEditForm.reset();
 
@@ -95,7 +98,19 @@ export class AddEmployeeModalComponent {
       verified: new FormControl(this.employee ? this.employee.verified : null, Validators.required),
 
     })
+    console.log(this.technologies, 'this.technologies in modal');
+    console.log(this.technologName, 'this.technologName in modal');
+
+
+
+    // this.getCardsData()
   }
+
+  // getCardsData(){
+  //   const data = this.empDetails.getData().data
+  //   console.log(data,'data');
+
+  // }
 
 }
 

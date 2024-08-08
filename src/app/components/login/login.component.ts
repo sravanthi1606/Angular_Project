@@ -41,9 +41,10 @@ export class LoginComponent {
     else {
       console.log(foundUser, 'foundUser');
       this.loginForm.reset();
-      this.router.navigate(['/home'], { replaceUrl: true });
+      this.router.navigate(['/home'])
+      // this.router.navigate(['/home'], { replaceUrl: true });
 
-      this.location.replaceState('/home');
+      // this.location.replaceState('/home');
       this.credentials.addcurrentUserCredentials(foundUser)
 
     }    

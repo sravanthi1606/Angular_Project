@@ -39,8 +39,11 @@ export class NavbarComponent {
 
   handleLogout() {
     this.courseService.handleLogout()
-    this.router.navigate(['/login'], { replaceUrl: true });
-    this.location.replaceState('/login');
+    // this.router.navigate(['/login'], { replaceUrl: true });
+    // this.location.replaceState('/login');
     this.isOpen = false;
   }
+
+
+  
 }

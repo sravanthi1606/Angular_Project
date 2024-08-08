@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { log } from 'console';
 import { Router, RouterModule } from '@angular/router';
@@ -19,13 +19,13 @@ export class HomeComponent {
   public technologie: any = []
   public show: boolean = false
   public tech: string[] = [];
-  public category: ''
+  public category:string
 
   showTable(x: any) {
     this.show = true;
     this.tech = x.technologies
     this.category = x.technologyName
-    // console.log(this.tech ,'gbbjhnj');
+    // this.router.navigate(['/home', x.technologyName]);
   }
   onBack() {
     this.show = false;
@@ -42,6 +42,8 @@ export class HomeComponent {
     this.technologie = this.courseService.getData().data
     // console.log(this.technologie, 'techs');
   }
+
+
 
 }
 

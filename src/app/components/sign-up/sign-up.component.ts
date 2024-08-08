@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -16,7 +16,15 @@ import { PasswordValidatorComponent } from './password-validator/password-valida
 
 export class SignUpComponent {
   signUpForm : FormGroup
+  signUpFormvalues = {
+    username:'',
+    password : '',
+    confirmPassword : ''
+
+  }
+  passwordMismatch:boolean = false;
   public credentialData = [];
+  @Input() confirmPasswordInput : string;
 
   constructor(private credentials: CourseService,private router: Router, private location: Location) {}
 
@@ -24,7 +32,7 @@ export class SignUpComponent {
 
   onSubmitSignUP() {
     
-    if (this.signUpForm.valid ) {
+    if (this.signUpForm.valid && this.isPasswordMatching) {
       console.log(this.signUpForm.value, 'signUp values');
       const newUser : any= {
         username: this.signUpForm.value.username,
@@ -35,8 +43,11 @@ export class SignUpComponent {
       console.log(newUser);
       this.credentials.addCredentials(newUser)
        this.signUpForm.reset();
-      this.router.navigate(['/login'],{replaceUrl:true});
-      this.location.replaceState('/login');
+
+       this.router.navigate(['/login'])
+
+      // this.router.navigate(['/login'],{replaceUrl:true});
+      // this.location.replaceState('/login');
     }
   }
 
@@ -45,6 +56,13 @@ export class SignUpComponent {
     alert(value)
     return value
   };
+
+  duplicateUserNameValidator(control : FormControl): { [key: string]: boolean } | null {
+    if(this.credentialData.some(cred => cred.username === control.value)){
+      return {'duplicateUserName' : true}
+    }
+    return null
+  }
 
 
   duplicateEmailValidator(control: FormControl): { [key: string]: boolean } | null {
@@ -62,37 +80,68 @@ export class SignUpComponent {
     }
     return null;
   }
-  
+
   // password(formGroup: FormGroup) {
   //   const { value: password } = formGroup.get('password');
   //   const { value: confirmPassword } = formGroup.get('confirmpassword');
   //   return password === confirmPassword ? null : { passwordNotMatch: true };
   // }
 
+
   ngOnInit() {
+
     this.getLoginCredentials();
     
     this.signUpForm = new FormGroup({
-      username: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$")]),
+      username: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$"),this.duplicateUserNameValidator.bind(this)]),
       email: new FormControl(null, [Validators.required, Validators.email, this.duplicateEmailValidator.bind(this)]),
       mobilenumber: new FormControl(null, [Validators.required, Validators.pattern("[0-9]{10}"), this.duplicateMobileValidator.bind(this)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(8), Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=[\\]{};:\'",.<>/?]).*$')]),
       confirmPassword: new FormControl(null, [Validators.required]),
     },
-     { validators: PasswordValidatorComponent('password', 'confirmPassword') }
-    // {validators: this.password.bind(this)}
+    //  { validators: PasswordValidatorComponent('password', 'confirmPassword') }
     );
+
+    
+    console.log(this.signUpForm);
+
+    
   }
   
 
   getLoginCredentials() {
     this.credentialData = this.credentials.getCredentials().data;
     console.log(this.credentialData, 'this.credentialData');
+
   }
-  get confirmPassword() {
-    return this.signUpForm.get('confirmPassword');
+  isPasswordMatching:boolean = true
+  passwordMatch(signUpForm:any){
+    console.log("signupform",signUpForm)
+    if(signUpForm.password == signUpForm.confirmPassword){
+      this.isPasswordMatching = true
+    }else {
+      this.isPasswordMatching = false
+    }
   }
+  // get confirmPassword() {
+  //   return this.signUpForm.get('confirmPassword');
+  // }
   
+
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   if (changes['confirmPasswordInput']) {
+  //     this.checkPasswordMismatch();
+  //   }
+  // }
+
+  // checkPasswordMismatch(): void {
+  //   const { password, confirmPassword } = this.signUpForm.controls;
+  //   if (password && confirmPassword && password.value !== confirmPassword.value) {
+  //     confirmPassword.setErrors({ passwordMismatch: true });
+  //   } else {
+  //     confirmPassword.setErrors(null);
+  //   }
+  // }
 }
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ParentComponent } from './components/parent/parent.component';
@@ -19,4 +19,13 @@ import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 export class AppComponent {
   title = 'angular-app';
   public imgUrl = "https://static.vecteezy.com/system/resources/previews/008/214/517/non_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg";
+
+  // constructor(private courseService: CourseService) { }
+
+
+  // @HostListener('window:popstate', ['$event'])
+  // onPopState(event: any) {
+  //   this.courseService.handleLogout()
+  // }
+
 }

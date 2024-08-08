@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Technology {
   id: number;
@@ -31,7 +32,7 @@ export class CourseService {
 
 
 
-  constructor() {
+  constructor(private router : Router) {
     if (!localStorage.getItem(this.employeesKey)) {
       this.initializeEmployeeData();
     }
@@ -42,6 +43,7 @@ export class CourseService {
       this.initializeCurrentUsercredentials();
     }
   }
+  
 
   private initializeSignUpcredentials() {
     const credentials = [
@@ -237,6 +239,8 @@ export class CourseService {
 
   handleLogout() {
     localStorage.removeItem(this.currentUserKey)
+    this.router.navigate(['/login']);
+
   }
 
 }

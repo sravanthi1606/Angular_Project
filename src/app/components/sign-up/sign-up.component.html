@@ -70,7 +70,6 @@
                     <div>
                         <form (ngSubmit)="onSubmitSignUP()" [formGroup]="signUpForm">
                             <div class="username">
-                                <!-- <label>UserName :</label> -->
                                 <input type="text" name="userName" formControlName="username" class="form-control"
                                     id="exampleFormControlInput1" placeholder="User Name">
                             </div>
@@ -83,10 +82,11 @@
                                     at least 4 characters</small>
                                 <small *ngIf="signUpForm.get('username').errors?.['pattern']">UserName should contain
                                     only alphabetic characters</small>
+                                <small *ngIf="signUpForm.get('username').errors?.['duplicateUserName']">UserName already
+                                    exists.</small>
                             </div>
                             <br>
                             <div class="email">
-                                <!-- <label>Email :</label> -->
                                 <input type="email" name="email" formControlName="email" class="form-control"
                                     id="exampleFormControlInput1" placeholder="Email">
                             </div>
@@ -99,7 +99,6 @@
                             </div>
                             <br>
                             <div class="mobileNumber">
-                                <!-- <label>Mobile Number :</label> -->
                                 <input type="number" name="mobileNumber" formControlName="mobilenumber"
                                     class="form-control" id="exampleFormControlInput1" placeholder="Mobile Number">
                             </div>
@@ -113,10 +112,18 @@
                                     already exists.</small>
                             </div>
                             <br>
+                            <div class="gender">
+                                <label>Gender</label><br>
+                                <input type="radio" name="female" formControlName="female">
+                                <label>Female</label>
+                                <input type="radio" name="male" formControlName="male">
+                                <label>Male</label>
+                            </div>
+                            <br>
                             <div class="password">
-                                <!-- <label>Password :</label> -->
                                 <input type="password" name="password" formControlName="password" class="form-control"
-                                    id="exampleFormControlInput1" placeholder="Password">
+                                    id="exampleFormControlInput1" placeholder="Password"
+                                    [(ngModel)]="signUpFormvalues.password">
                             </div>
                             <div *ngIf="signUpForm.get('password').invalid && signUpForm.get('password').touched ">
                                 <small *ngIf="signUpForm.get('password').errors?.['required']">Password is a required
@@ -133,20 +140,23 @@
                             <br>
                             <div class="password">
                                 <input type="password" name="confirmPassword" formControlName="confirmPassword"
-                                    class="form-control" id="exampleFormControlInput1" placeholder="Confirm Password">
+                                    class="form-control" id="exampleFormControlInput1" placeholder="Confirm Password"
+                                    [(ngModel)]="signUpFormvalues.confirmPassword"
+                                    (input)="passwordMatch(signUpFormvalues)">
                             </div>
-                            <div
-                                *ngIf="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched ">
-                                <small *ngIf="signUpForm.get('confirmPassword').errors?.['required']">Confirm Password
+                            <div>
+                                <small
+                                    *ngIf="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched && signUpForm.get('confirmPassword').errors?.['required']">Confirm
+                                    Password
                                     is a required field</small>
-                                <small *ngIf="signUpForm.errors?.['passwordMismatch']">Does not match with
-                                    password</small>
-                                <!-- <small *ngIf="signUpForm.get('password') !== signUpForm.get('confirmPassword')">Does not match with password</small> -->
+                                <small
+                                    *ngIf="!signUpForm.get('confirmPassword').invalid &&  !isPasswordMatching">Password
+                                    doesnt match</small>
                             </div>
-
                             <br>
-                            <button class="login" [ngClass]="signUpForm.valid ? 'btn-enable' : 'btn-disable'"
-                                type="submit" [disabled]='!signUpForm.valid'>Sign Up</button>
+                            <button class="login"
+                                [ngClass]="signUpForm.valid && isPasswordMatching ? 'btn-enable' : 'btn-disable'"
+                                type="submit" [disabled]='!signUpForm.valid || !isPasswordMatching'>Sign Up</button>
                         </form>
                     </div>
                 </div>

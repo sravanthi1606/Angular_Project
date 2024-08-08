@@ -23,13 +23,15 @@ export class EmployeeTableComponent {
 
   @Input() public postTechnology :any=[]
 
+  @Input() public technologyName : string
+
   public employeedata:any=[]
 
   public mergedData :any= [];
   selectedEmployee : any
 
 
-  constructor(private empData: CourseService, private modalService: NgbModal) {}
+  constructor(private empData: CourseService, private modalService: NgbModal,private route : ActivatedRoute) {}
 
 
   onBack(){
@@ -40,6 +42,11 @@ export class EmployeeTableComponent {
 
   ngOnInit() {
     this.getEmployees();
+
+    console.log(this.technologyName,'this.technologyName');
+    console.log(this.techs,'this.technologies');
+    
+    
   }
 
   getEmployees() {
@@ -51,6 +58,8 @@ export class EmployeeTableComponent {
   }
     openAddEmpModal() {
     const modalRef = this.modalService.open(AddEmployeeModalComponent);
+    modalRef.componentInstance.technologies = this.techs
+    modalRef.componentInstance.technologName = this.technologyName
     modalRef.componentInstance.employeeAdded.subscribe(() => {
       this.getEmployees();
     });
