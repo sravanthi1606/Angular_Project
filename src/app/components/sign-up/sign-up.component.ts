@@ -39,6 +39,7 @@ export class SignUpComponent {
         email:this.signUpForm.value.email,
         mobileNumber: Number(this.signUpForm.value.mobilenumber),
         password: this.signUpForm.value.password,
+        gender:this.signUpForm.value.gender
       };
       console.log(newUser);
       this.credentials.addCredentials(newUser)
@@ -96,6 +97,7 @@ export class SignUpComponent {
       username: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$"),this.duplicateUserNameValidator.bind(this)]),
       email: new FormControl(null, [Validators.required, Validators.email, this.duplicateEmailValidator.bind(this)]),
       mobilenumber: new FormControl(null, [Validators.required, Validators.pattern("[0-9]{10}"), this.duplicateMobileValidator.bind(this)]),
+      gender : new FormControl('male'),
       password: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(8), Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=[\\]{};:\'",.<>/?]).*$')]),
       confirmPassword: new FormControl(null, [Validators.required]),
     },

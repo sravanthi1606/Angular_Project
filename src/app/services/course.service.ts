@@ -47,8 +47,8 @@ export class CourseService {
 
   private initializeSignUpcredentials() {
     const credentials = [
-      { username: 'rani', email: 'ranireddy@gmail.com', mobileNumber: 9876543210, password: '123@Sf' },
-      { username: 'honey', email: 'honey@gmail.com', mobileNumber: 9826553513, password: '1@Honeys' },
+      { username: 'rani', email: 'ranireddy@gmail.com', mobileNumber: 9876543210, password: '123@Sf',gender:'female' },
+      { username: 'honey', email: 'honey@gmail.com', mobileNumber: 9826553513, password: '1@Honeys',gender:'female' },
     ];
     localStorage.setItem(this.LoginKey, JSON.stringify(credentials))
   }
