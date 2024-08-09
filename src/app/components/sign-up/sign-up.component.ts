@@ -97,7 +97,7 @@ export class SignUpComponent {
       username: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$"),this.duplicateUserNameValidator.bind(this)]),
       email: new FormControl(null, [Validators.required, Validators.email, this.duplicateEmailValidator.bind(this)]),
       mobilenumber: new FormControl(null, [Validators.required, Validators.pattern("[0-9]{10}"), this.duplicateMobileValidator.bind(this)]),
-      gender : new FormControl('male'),
+      gender : new FormControl(null),
       password: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(8), Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=[\\]{};:\'",.<>/?]).*$')]),
       confirmPassword: new FormControl(null, [Validators.required]),
     },
@@ -125,6 +125,14 @@ export class SignUpComponent {
       this.isPasswordMatching = false
     }
   }
+
+  navigateLogin(){
+    this.router.navigate(['login'])
+  }
+
+
+
+
   // get confirmPassword() {
   //   return this.signUpForm.get('confirmPassword');
   // }

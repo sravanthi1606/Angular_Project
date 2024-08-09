@@ -22,6 +22,7 @@
                                 min of 4 characters</small>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label>Mobile Number :</label><br>
@@ -36,6 +37,17 @@
                                 contain 10 digits</small>
                         </div>
                     </div>
+
+                    <div class="col-lg-6">
+                        <div class="gender">
+                            <label>Gender</label><br>
+                            <input type="radio" value="female" formControlName="gender">
+                            <label>Female</label>
+                            <input type="radio" value="male" formControlName="gender">
+                            <label>Male</label>
+                        </div>
+                    </div>
+
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label>Company Name :</label><br>
@@ -73,14 +85,19 @@
                                 field</small>
                         </div>
                     </div>
+                    <div class="col-lg-6" *ngIf="!employee">
+                        <label>Category :</label>
+                        <input type="text" value="{{addEditForm.get('category').value}}" disabled class="form-control">
+                    </div>
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label>Technologies :</label><br>
-                            <select name="technology" class="form-select" formControlName="technology">
-                                <option value="Angular">Angular</option>
+                            <select name="technology" class="form-select" formControlName="technology" multiple>
+                                <option *ngFor="let t of technologies" [value]="t">{{t}}</option>
+                                <!-- <option value="Angular">Angular</option>
                                 <option value="React">React</option>
                                 <option value="Java">Java</option>
-                                <option value="Dotnet">Dotnet</option>
+                                <option value="Dotnet">Dotnet</option> -->
                             </select>
                         </div>
 
@@ -104,9 +121,11 @@
                         <div class="mb-3">
                             <label>Notice Period :</label><br>
                             <select name="noticePeriod" class="form-select" formControlName="noticePeriod">
-                                <option>30 </option>
-                                <option>60 </option>
-                                <option>90 </option>
+                                <option value="15">15 days</option>
+                                <option value="30">30 days</option>
+                                <option value="45">45 days </option>
+                                <option value="15">60 days</option>
+                                <option value="90">90 days</option>
                             </select>
                         </div>
 
@@ -117,7 +136,7 @@
                                 field</small>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                         <div class="mb-3">
                             <label>Verified :</label><br>
                             <select name="verified" class="form-control" formControlName="verified">
@@ -125,7 +144,7 @@
                                 <option value="no">No</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div *ngIf="addEditForm.get('verified').invalid && addEditForm.get('verified').touched ">
                         <small *ngIf="addEditForm.get('verified').errors?.['verified']">Verified is a required
                             field</small>
@@ -140,6 +159,7 @@
                 <button type="submit" value="submit" class="btn-submit"
                     [ngClass]="addEditForm.valid ? 'btn-enable' : 'btn-disable'" *ngIf='!employee'
                     (click)="activeModal.dismiss('Cross click')" [disabled]="!addEditForm.valid">Submit</button>
+                <button type="button" class="btn-submit" (click)="activeModal.dismiss('Cross click')">Cancel</button>
             </div>
         </form>
     </div>

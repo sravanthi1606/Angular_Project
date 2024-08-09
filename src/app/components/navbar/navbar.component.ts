@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseService } from '../../services/course.service';
 import { Router, RouterLink } from '@angular/router';
 import { Location, NgClass } from '@angular/common';
+import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent {
 
   currentUser: any;
 
-  constructor(private courseService: CourseService, private router: Router, private location: Location) { }
+  constructor(private courseService: CourseService, private router: Router, private location: Location,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.currentUser = this.courseService.getCurrentUser().data
@@ -42,6 +43,11 @@ export class NavbarComponent {
     // this.router.navigate(['/login'], { replaceUrl: true });
     // this.location.replaceState('/login');
     this.isOpen = false;
+  }
+
+  naviagteProfile(){
+    const modalRef = this.modalService.open(ProfileModalComponent);
+    modalRef.componentInstance.currentUser = this.currentUser;
   }
 
 

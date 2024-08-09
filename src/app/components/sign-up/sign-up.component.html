@@ -154,9 +154,12 @@
                                     doesnt match</small>
                             </div>
                             <br>
-                            <button class="login"
-                                [ngClass]="signUpForm.valid && isPasswordMatching ? 'btn-enable' : 'btn-disable'"
-                                type="submit" [disabled]='!signUpForm.valid || !isPasswordMatching'>Sign Up</button>
+                            <div class="sign-btn">
+                                <button class="login"
+                                    [ngClass]="signUpForm.valid && isPasswordMatching ? 'btn-enable' : 'btn-disable'"
+                                    type="submit" [disabled]='!signUpForm.valid || !isPasswordMatching'>Sign Up</button>
+                                <button class="login" type="button" (click)="navigateLogin()">Cancel</button>
+                            </div>
                         </form>
                     </div>
                 </div>

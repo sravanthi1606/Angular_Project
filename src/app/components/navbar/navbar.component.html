@@ -30,7 +30,8 @@
         </button>
     </div>
     <div class="dropdown-menu" [ngClass]="{'show': isOpen}">
-        <p class="username">{{ currentUser[0].username.toUpperCase() }} {{currentUser[0].gender}}</p>
+        <button (click)="naviagteProfile()" class="dropdown-item">My Profile</button>
+        <!-- <p class="username">{{ currentUser[0].username.toUpperCase() }} {{currentUser[0].gender}}</p> -->
         <button class="dropdown-item" (click)="handleLogout()">Logout</button>
     </div>
 </div>

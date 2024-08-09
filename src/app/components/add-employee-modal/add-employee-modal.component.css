@@ -20,7 +20,7 @@
     border-radius: 10px;
     padding: 7px 10px;
     color: white;
-
+    margin: 10px;
 }
 
 input select .ng-invalid .ng-touched {
