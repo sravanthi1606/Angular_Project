@@ -27,7 +27,7 @@ interface Employee {
 })
 export class CourseService {
 
-  private LoginKey = 'loginCredentials'
+  private LoginKey = 'SignUpCredentials'
   private employeesKey = 'employeesData';
   private currentUserKey: any = 'currentUser';
 
@@ -46,9 +46,7 @@ export class CourseService {
   }
 
   initialData(){
-    //   if (!localStorage.getItem(this.employeesKey)) {
-    //   this.initializeEmployeeData();
-    // }
+
     if (!localStorage.getItem(this.LoginKey)) {
       this.initializeSignUpcredentials();
     }
@@ -57,6 +55,11 @@ export class CourseService {
     // }
   }
   
+  initalempData(){
+    if (!localStorage.getItem(this.employeesKey)) {
+      this.initializeEmployeeData();
+    }
+  }
 
   private initializeSignUpcredentials() {
     const credentials = [
