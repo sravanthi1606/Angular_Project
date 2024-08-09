@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseService } from '../../services/course.service';
 import { Router, RouterLink } from '@angular/router';
@@ -17,7 +17,8 @@ export class NavbarComponent {
 
   currentUser: any;
 
-  constructor(private courseService: CourseService, private router: Router, private location: Location,private modalService: NgbModal) { }
+  constructor(private courseService: CourseService, private router: Router, private location: Location,
+    private modalService: NgbModal,private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.currentUser = this.courseService.getCurrentUser().data
@@ -50,6 +51,13 @@ export class NavbarComponent {
     modalRef.componentInstance.currentUser = this.currentUser;
   }
 
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.isOpen = false;
+    }
+  }
 
   
 }

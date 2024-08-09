@@ -27,7 +27,7 @@
                         <ng-container *ngIf="mergedData.length > 0">
                             <tr *ngFor="let item of mergedData">
                                 <td>
-                                    <p style="color: red; cursor: pointer;font-size: 25px;" (click)="openModal(item)">{{
+                                    <p style="color: red; cursor: pointer;" (click)="openModal(item)">{{
                                         item.employee }}</p>
                                 </td>
                                 <td>{{ item.technology }}</td>

@@ -25,12 +25,17 @@ export class AppComponent {
   title = 'angular-app';
   public imgUrl = "https://static.vecteezy.com/system/resources/previews/008/214/517/non_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg";
 
-  // constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService) { }
 
 
   // @HostListener('window:popstate', ['$event'])
   // onPopState(event: any) {
   //   this.courseService.handleLogout()
   // }
+
+
+  ngOnInit(){
+    this.courseService.initialData()
+  }
 
 }

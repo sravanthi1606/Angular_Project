@@ -34,15 +34,27 @@ export class CourseService {
 
 
   constructor(private router : Router) {
-    if (!sessionStorage.getItem(this.employeesKey)) {
-      this.initializeEmployeeData();
-    }
-    if (!sessionStorage.getItem(this.LoginKey)) {
+    // if (!sessionStorage.getItem(this.employeesKey)) {
+    //   this.initializeEmployeeData();
+    // }
+    // if (!sessionStorage.getItem(this.LoginKey)) {
+    //   this.initializeSignUpcredentials();
+    // }
+    // if (!sessionStorage.getItem(this.currentUserKey)) {
+    //   this.initializeCurrentUsercredentials();
+    // }
+  }
+
+  initialData(){
+    //   if (!localStorage.getItem(this.employeesKey)) {
+    //   this.initializeEmployeeData();
+    // }
+    if (!localStorage.getItem(this.LoginKey)) {
       this.initializeSignUpcredentials();
     }
-    if (!sessionStorage.getItem(this.currentUserKey)) {
-      this.initializeCurrentUsercredentials();
-    }
+    // if (!localStorage.getItem(this.currentUserKey)) {
+    //   this.initializeCurrentUsercredentials();
+    // }
   }
   
 
@@ -51,11 +63,11 @@ export class CourseService {
       { username: 'rani', email: 'ranireddy@gmail.com', mobileNumber: 9876543210, password: '123@Sf',gender:'female' },
       { username: 'honey', email: 'honey@gmail.com', mobileNumber: 9826553513, password: '1@Honeys',gender:'female' },
     ];
-    sessionStorage.setItem(this.LoginKey, JSON.stringify(credentials))
+    localStorage.setItem(this.LoginKey, JSON.stringify(credentials))
   }
 
   getCredentials() {
-    const data = sessionStorage.getItem(this.LoginKey);
+    const data = localStorage.getItem(this.LoginKey);
     if (data) {
       return { data: JSON.parse(data) };
     }
@@ -68,17 +80,17 @@ export class CourseService {
     console.log(currentCredentials, 'currentCredentials');
 
     currentCredentials.push(credential);
-    sessionStorage.setItem(this.LoginKey, JSON.stringify(currentCredentials));
+    localStorage.setItem(this.LoginKey, JSON.stringify(currentCredentials));
     console.log(' credential:', credential);
     console.log('Updated credential list:', currentCredentials);
   }
 
   private initializeCurrentUsercredentials() {
     const credentials = [];
-    sessionStorage.setItem(this.currentUserKey, JSON.stringify(credentials))
+    localStorage.setItem(this.currentUserKey, JSON.stringify(credentials))
   }
   getCurrentUser() {
-    const data = sessionStorage.getItem(this.currentUserKey);
+    const data = localStorage.getItem(this.currentUserKey);
     if (data) {
       return { data: JSON.parse(data) };
     }
@@ -127,7 +139,7 @@ export class CourseService {
         verified: 'yes'
       }
     ];
-    sessionStorage.setItem(this.employeesKey, JSON.stringify(initialData));
+    localStorage.setItem(this.employeesKey, JSON.stringify(initialData));
   }
 
   getData() {
@@ -194,7 +206,7 @@ export class CourseService {
   }
 
   getSingleEmpData(): { data: Employee[] } {
-    const data = sessionStorage.getItem(this.employeesKey);
+    const data = localStorage.getItem(this.employeesKey);
     if (data) {
       return { data: JSON.parse(data) };
     }
@@ -204,7 +216,7 @@ export class CourseService {
   addEmployee(employee: Employee) {
     const currentData = this.getSingleEmpData().data;
     currentData.push(employee);
-    sessionStorage.setItem(this.employeesKey, JSON.stringify(currentData));
+    localStorage.setItem(this.employeesKey, JSON.stringify(currentData));
     console.log('Employee added:', employee);
     console.log('Updated employee list:', currentData);
   }
@@ -212,7 +224,7 @@ export class CourseService {
   deleteEmployee(id: number) {
     const currentData = this.getSingleEmpData().data;
     const updatedData = currentData.filter(employee => employee.id !== id);
-    sessionStorage.setItem(this.employeesKey, JSON.stringify(updatedData));
+    localStorage.setItem(this.employeesKey, JSON.stringify(updatedData));
     console.log('Updated employee list:', updatedData);
   }
 
@@ -222,7 +234,7 @@ export class CourseService {
     const Index = currentData.findIndex(employees => employees.id == employee.id);
     console.log(Index)
     currentData[Index] = employee;
-    sessionStorage.setItem(this.employeesKey, JSON.stringify(currentData));
+    localStorage.setItem(this.employeesKey, JSON.stringify(currentData));
     console.log('Updated employee list:', currentData);
   }
 
@@ -236,13 +248,13 @@ export class CourseService {
     }
 
     curretUser.push(credential);
-    sessionStorage.setItem(this.currentUserKey, JSON.stringify(curretUser));
+    localStorage.setItem(this.currentUserKey, JSON.stringify(curretUser));
     console.log(' credential:', credential);
     console.log('Updated credential list:', curretUser);
   }
 
   handleLogout() {
-    sessionStorage.removeItem(this.currentUserKey)
+    localStorage.removeItem(this.currentUserKey)
     this.router.navigate(['/login']);
 
   }

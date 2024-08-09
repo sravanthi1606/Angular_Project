@@ -43,3 +43,10 @@ input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.gender  label{
+    padding: 5px;
+}
+.gender input{
+    margin: 0px 0px 0px 10px;
+}
