@@ -34,15 +34,15 @@ export class CourseService {
 
 
   constructor(private router : Router) {
-    // if (!sessionStorage.getItem(this.employeesKey)) {
-    //   this.initializeEmployeeData();
-    // }
-    // if (!sessionStorage.getItem(this.LoginKey)) {
-    //   this.initializeSignUpcredentials();
-    // }
-    // if (!sessionStorage.getItem(this.currentUserKey)) {
-    //   this.initializeCurrentUsercredentials();
-    // }
+    if (!sessionStorage.getItem(this.employeesKey)) {
+      this.initializeEmployeeData();
+    }
+    if (!sessionStorage.getItem(this.LoginKey)) {
+      this.initializeSignUpcredentials();
+    }
+    if (!sessionStorage.getItem(this.currentUserKey)) {
+      this.initializeCurrentUsercredentials();
+    }
   }
   
 

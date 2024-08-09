@@ -6,12 +6,17 @@ import { AngularMaterialModule } from './modules/angular-material/angular-materi
 import { CourseService } from './services/course.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, ParentComponent, AngularMaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterOutlet, HomeComponent, ParentComponent, AngularMaterialModule, FormsModule, ReactiveFormsModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [CourseService, NgbActiveModal]
