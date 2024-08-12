@@ -43,9 +43,43 @@ export class HomeComponent {
     // console.log(this.technologie, 'techs');
   }
 
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // constructor(private courseService:CourseService,private router:Router) {

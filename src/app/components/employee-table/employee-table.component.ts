@@ -64,7 +64,7 @@ export class EmployeeTableComponent {
       this.getEmployees();
     });
   }
-   employeeAdded(event:any){
+  employeeAdded(event:any){
     this.getEmployees()
   }
 
@@ -87,21 +87,11 @@ export class EmployeeTableComponent {
     this.getEmployees();
   }
 
-  onEdit(item : any){
-    // const modalRef = this.modalService.open(ModalComponent);
-    console.log(item,'item');
-    // this.openAddEditModal(item)
-    
-  }
+
 
 }
 
 
-
-// onEdit(item : any){
-//   this.selectedEmployee = { ...item };
-
-// }
 
 
 

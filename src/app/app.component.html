@@ -1,4 +1,4 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 
 
 <!-- <p-button label="Submit" /> -->
@@ -11,6 +11,11 @@
  -->
 
 
+ <ng-select [items]="cars" 
+           bindLabel="name" 
+           bindValue="id" 
+           [(ngModel)]="selectedCar">
+</ng-select>
 
 
 
@@ -38,7 +43,8 @@
 
 
 
- 
+
+
 
 <!-- <div class="row">
         <div class="col">

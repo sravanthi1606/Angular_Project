@@ -3,7 +3,6 @@
         <div class="back_button" (click)="onBack()">
             <i class="bi bi-arrow-left back_btn"></i>
         </div>
-        <!-- <app-modal (employeeAdded)="getEmployees()"></app-modal> -->
 
         <div class="addEmp">
             <button class="emp" (click)="openAddEmpModal()">Add Employee</button>
@@ -36,8 +35,6 @@
                                 <td>{{ item.verified }}</td>
                                 <td>
                                     <button class="btn btn-warning m-2" (click)="openEditEmpModal(item)"><i class="bi bi-pencil-square"></i></button>
-                                    <!-- <button class="btn btn-warning m-2" (click)="onEdit(item)"><app-modal></app-modal></button> -->
-
                                     <button class="btn btn-danger m-2" (click)="onDelete(item.id)"><i class="bi bi-trash3-fill"></i></button>
                                 </td>
                             </tr>
@@ -53,5 +50,4 @@
         </div>
     </div>
 
-    <!-- <app-add-employee-modal></app-add-employee-modal> -->
 </div>

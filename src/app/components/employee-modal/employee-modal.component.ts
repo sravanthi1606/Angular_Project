@@ -43,5 +43,13 @@ export class EmployeeModalComponent {
 
 
 
+
+
+
+
+
+
+
+
 //   public employeeData : EmployeeData[]=[]
 //   public data : EmployeeData | undefined
