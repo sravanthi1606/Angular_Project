@@ -17,7 +17,6 @@ import { PasswordValidatorComponent } from './password-validator/password-valida
 export class SignUpComponent {
   signUpForm : FormGroup
   signUpFormvalues = {
-    username:'',
     password : '',
     confirmPassword : ''
 
@@ -52,11 +51,7 @@ export class SignUpComponent {
     }
   }
 
-  passwordsMatch():boolean{
-    const value = this.signUpForm.value.password === this.signUpForm.value.confirmPassword;
-    alert(value)
-    return value
-  };
+
 
   duplicateUserNameValidator(control : FormControl): { [key: string]: boolean } | null {
     if(this.credentialData.some(cred => cred.username === control.value)){
@@ -82,11 +77,7 @@ export class SignUpComponent {
     return null;
   }
 
-  // password(formGroup: FormGroup) {
-  //   const { value: password } = formGroup.get('password');
-  //   const { value: confirmPassword } = formGroup.get('confirmpassword');
-  //   return password === confirmPassword ? null : { passwordNotMatch: true };
-  // }
+
 
 
   ngOnInit() {
@@ -101,13 +92,10 @@ export class SignUpComponent {
       password: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(8), Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=[\\]{};:\'",.<>/?]).*$')]),
       confirmPassword: new FormControl(null, [Validators.required]),
     },
-    //  { validators: PasswordValidatorComponent('password', 'confirmPassword') }
     );
-
-    
+ 
     console.log(this.signUpForm);
-
-    
+ 
   }
   
 
@@ -132,6 +120,31 @@ export class SignUpComponent {
 
 
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// passwordsMatch():boolean{
+//   const value = this.signUpForm.value.password === this.signUpForm.value.confirmPassword;
+//   alert(value)
+//   return value
+// };
+
+
+
 
   // get confirmPassword() {
   //   return this.signUpForm.get('confirmPassword');
@@ -152,7 +165,6 @@ export class SignUpComponent {
   //     confirmPassword.setErrors(null);
   //   }
   // }
-}
 
 
 
@@ -162,24 +174,11 @@ export class SignUpComponent {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // password(formGroup: FormGroup) {
+  //   const { value: password } = formGroup.get('password');
+  //   const { value: confirmPassword } = formGroup.get('confirmpassword');
+  //   return password === confirmPassword ? null : { passwordNotMatch: true };
+  // }
 
 
 

@@ -1,3 +1,121 @@
+
+<app-navbar></app-navbar>
+
+<div>
+  <div class="container" *ngIf="!show">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let x of technologie" (click)="showTable(x)">
+        <div class="card" style="width: 18rem; height: 18rem;">
+          <img src={{x.imgSrc}} class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{x.technologyName}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="show">
+    <app-employee-table [shows]="show" (back)="onBack()" [techs]="tech" [technologyName]="category"></app-employee-table>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-employee-table [shows]="show" (back)="onBack()" [postTechnology]="technologie" 
+      [techs]="tech"></app-employee-table> -->
+    <!-- <app-add-employee-modal [category]="category"></app-add-employee-modal> -->
+
+
+
+
+<!-- <app-employee-table *ngIf="show" [postMan]="" [shows]="show"></app-employee-table> -->
+<!-- <app-employee-table *ngIf="show" (back)="onBack()" ></app-employee-table> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <h3>String Interpolation</h3>
 <p>home component</p>
 <p>My name is {{name}}</p>
@@ -67,32 +185,3 @@
     </div>
   </div>
 </div> -->
-<app-navbar></app-navbar>
-
-<div>
-  <div class="container" *ngIf="!show">
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let x of technologie" (click)="showTable(x)">
-        <div class="card" style="width: 18rem; height: 18rem;">
-          <img src={{x.imgSrc}} class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{x.technologyName}}</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="show">
-    <app-employee-table [shows]="show" (back)="onBack()" [techs]="tech" [technologyName]="category"></app-employee-table>
-  </div>
-</div>
-
-<!-- <app-employee-table [shows]="show" (back)="onBack()" [postTechnology]="technologie" 
-      [techs]="tech"></app-employee-table> -->
-    <!-- <app-add-employee-modal [category]="category"></app-add-employee-modal> -->
-
-
-
-
-<!-- <app-employee-table *ngIf="show" [postMan]="" [shows]="show"></app-employee-table> -->
-<!-- <app-employee-table *ngIf="show" (back)="onBack()" ></app-employee-table> -->

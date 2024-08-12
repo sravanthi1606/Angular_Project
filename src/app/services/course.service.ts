@@ -45,14 +45,11 @@ export class CourseService {
     // }
   }
 
-  initialData(){
+  initialSignUpData(){
 
     if (!localStorage.getItem(this.LoginKey)) {
       this.initializeSignUpcredentials();
     }
-    // if (!localStorage.getItem(this.currentUserKey)) {
-    //   this.initializeCurrentUsercredentials();
-    // }
   }
   
   initalempData(){

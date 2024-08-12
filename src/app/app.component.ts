@@ -28,14 +28,14 @@ export class AppComponent {
   constructor(private courseService: CourseService) { }
 
 
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event: any) {
-    this.courseService.handleLogout()
-  }
+  // @HostListener('window:popstate', ['$event'])
+  // onPopState(event: any) {
+  //   this.courseService.handleLogout()
+  // }
 
 
   ngOnInit(){
-    this.courseService.initialData()
+    this.courseService.initialSignUpData()
   }
 
 }
